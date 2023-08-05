@@ -30,7 +30,7 @@ app.use(morgan("common"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors({
-  origin: 'http://localhost:3000', // Corrected URL
+  origin: 'https://mern-six-sooty.vercel.app', // Corrected URL
   credentials: true
 }));
 app.use(CookieParser());
