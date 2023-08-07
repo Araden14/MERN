@@ -28,7 +28,7 @@ app.use(morgan("common"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors({
-  origin: 'http://localhost:3000', // Corrected URL
+  origin: 'http://192.168.1.72:3000', // Corrected URL
   credentials: true
 }));
 app.use(CookieParser());
