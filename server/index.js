@@ -14,9 +14,11 @@ import marksRoutes from "./routes/marks.js";
 import authRoute from "./routes/AuthRoute.js";
 import CookieParser from "cookie-parser";
 
+
 // data import
 import User from "./models/user.js";
 import Units from "./models/units.js";
+import Datagen from "./data/index.js";
 
 /*CONFIGURATION*/
 dotenv.config();
@@ -46,8 +48,7 @@ app.use("/auth", authRoute);
 const PORT = process.env.PORT || 5000;
 mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
-      console.log("Base de donnée connectée !");
-      app.listen(PORT, () => console.log(`Le serveur est lancé sur le port : ${PORT}`))
+      app.listen(PORT, () => console.log(`Server running on port: ${PORT}`))
       
     })
     .catch((error) => console.log(`${error} did not connect !`));

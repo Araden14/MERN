@@ -7,7 +7,6 @@ import { AuthContext } from 'state/AuthContext';
 import { Card, Button, Popover } from 'antd';
 import Meta from 'antd/es/card/Meta';
 import CreateUnit from './create';
-import { motion } from 'framer-motion';
 
 const Units = () => {
   Auth()
@@ -24,12 +23,6 @@ useEffect(() => {
       let units = [];
       for (let i = 0; i < data.length; i++) { 
 units.push( 
-  <motion.div
-  key={i}
-  initial={{ rotate: 5, y:50 , x: 100, opacity: 0, scale: 0.5 }}
-  animate={{ rotate: 0,  y: 0 , x:0, opacity: 1, scale: 1 }}
-  transition={{ duration: 0.5, delay: i * 0.1 }}
->
   <Card style={{}} key={i} bordered={true}> 
     <Meta
       title={data[i].name}
@@ -38,8 +31,7 @@ units.push(
     <br/>
     <p>Volume horaire : {data[i].hours}</p>
     Jour : {data[i].day} 
-    
-  </Card></motion.div>
+  </Card> 
 )    
 
       }
