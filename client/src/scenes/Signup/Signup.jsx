@@ -14,7 +14,7 @@ import Signupform from "./SignupForm";
 const Signup = () => {
 
   const navigate = useNavigate()
-  axios.post("https://express-lifeboard-0jtg.onrender.com/auth", {}, { withCredentials: true })
+  axios.post("http://localhost:5001/auth", {}, { withCredentials: true })
   .then(response => {
 
     const isAuth = response.data.status;

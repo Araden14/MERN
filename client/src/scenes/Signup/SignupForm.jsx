@@ -13,7 +13,7 @@ const Signupform = () => {
     const onFinish = (values) => {
         const jsonValues = JSON.stringify(values);
 
-        axios.post('https://express-lifeboard-0jtg.onrender.com/auth/signup', jsonValues, {
+        axios.post('http://localhost:5001/auth/signup', jsonValues, {
             headers: {
                 'Content-Type': 'application/json',
             },

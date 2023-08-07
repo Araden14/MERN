@@ -13,7 +13,7 @@ import { notification } from 'antd';
 const Login = () => {
 
   const navigate = useNavigate()
-  axios.post("https://express-lifeboard-0jtg.onrender.com/auth", {}, { withCredentials: true })
+  axios.post(" https://express-lifeboard-0jtg.onrender.com/auth", {}, { withCredentials: true })
   .then(response => {
 
     const isAuth = response.data.status;
