@@ -18,7 +18,7 @@ const Units = () => {
 
 
 useEffect(() => {
-  axios.get('http://localhost:5001/units/get', { withCredentials: true }) // Make a GET request to the server
+  axios.get('https://express-lifeboard-0jtg.onrender.com/units/get', { withCredentials: true }) // Make a GET request to the server
     .then(function (response) {
       const data = response.data;
       let units = [];

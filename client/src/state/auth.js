@@ -12,7 +12,7 @@ const Auth = () => {
       }
     useEffect(() => {
         
-      axios.post("http://localhost:5001/auth", {}, { withCredentials: true })
+      axios.post("https://express-lifeboard-0jtg.onrender.com/auth", {}, { withCredentials: true })
         .then(response => {
           console.log(response);
           const isAuth = response.data.status;
