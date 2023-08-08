@@ -24,12 +24,7 @@ useEffect(() => {
       let units = [];
       for (let i = 0; i < data.length; i++) { 
 units.push( 
-  <motion.div
-  key={i}
-  initial={{ rotate: 5, y:50 , x: 100, opacity: 0, scale: 0.5 }}
-  animate={{ rotate: 0,  y: 0 , x:0, opacity: 1, scale: 1 }}
-  transition={{ duration: 0.5, delay: i * 0.1 }}
->
+ 
   <Card style={{}} key={i} bordered={true}> 
     <Meta
       title={data[i].name}
@@ -39,7 +34,7 @@ units.push(
     <p>Volume horaire : {data[i].hours}</p>
     Jour : {data[i].day} 
     
-  </Card></motion.div>
+  </Card>
 )    
 
       }
@@ -54,7 +49,7 @@ units.push(
   }, []); 
   return (
   <div><div style={{display:'inline-flex', gap:'1rem', alignItems:'center' }}><h1 className='font-bold text-xl'>Vos cours 📚</h1>
-  <Popover overlayStyle={{width:'25vw'}} placement="bottomRight" title={<h1>kebab</h1>} content={<CreateUnit/>} trigger="click">
+  <Popover overlayStyle={{width:'30vw'}} placement="bottomRight" title={<h1>Crée un nouveau cours</h1>} content={<CreateUnit/>} trigger="click">
   <Button style={{backgroundColor:'#1F8A70'}} type="primary">Ajouter</Button>  </Popover>
 </div>
       <div style={{
