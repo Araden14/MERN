@@ -12,7 +12,6 @@ const UserUnitSchema = new mongoose.Schema(
         },
         hours: {
             type: Number,
-            required: true,
             min: 1,
             max: 200,
         },
@@ -24,7 +23,6 @@ const UserUnitSchema = new mongoose.Schema(
         },
         day : {
             type: String,
-            required: true,
             min: 2,
             max: 100,
         },
