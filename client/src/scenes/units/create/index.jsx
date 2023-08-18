@@ -16,6 +16,7 @@ const CreateUnit = ({resetState}) => {
     const userid = authInfo.user._id;
     values.user = userid;
     const jsonValues = JSON.stringify(values);
+    console.log(jsonValues)
     axios.post('http://localhost:5001/units/create', jsonValues, {
         headers: {
           'Content-Type': 'application/json',

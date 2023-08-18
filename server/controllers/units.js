@@ -1,5 +1,6 @@
 import express from "express";
 import Units from "../models/units.js";
+import { mongo } from "mongoose";
 
 const router = express.Router();
 
@@ -7,10 +8,9 @@ const Createunit = async (req, res) => {
     try {
       // Destructurer le corps de la requête pour obtenir email, password, username, createdAt
       const { user, name, hours, description, day } = req.body;
-
   
       // Vérifier si un utilisateur avec l'email donné existe déjà
-      const existingUnit = await Units.findOne({ name });
+     const existingUnit = await Units.findOne({ user, name });
   
   
   
@@ -18,6 +18,7 @@ const Createunit = async (req, res) => {
       if (existingUnit) {
         return res.json({ message: "Ce cours existe déjà" });
       }
+  
   
   
       const Unit = await Units.create({  user, name, hours, description, day });

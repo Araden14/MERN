@@ -25,7 +25,7 @@ const Units = () => {
         let units = [];
         for (let i = 0; i < data.length; i++) {
           units.push(
-            <Card style={{ boxShadow : 'rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset' }} key={i} bordered={true}>
+            <Card style={{ }} key={i} bordered={true}>
               <Meta title={data[i].name} description={data[i].description} />
               <br />
               <p>Volume horaire : {data[i].hours}</p>
