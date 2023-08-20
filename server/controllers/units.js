@@ -44,5 +44,26 @@ const Createunit = async (req, res) => {
     }
   };
 
+  const RemoveUnit = async (req, res) => {
+    try {
+const { _id , user, name} = req.body;
+const statuscheck = Object.keys(req.body).length
+if ( statuscheck === 0){
+  return res.json({ message: "Requête vide"});
 
-export { Createunit, getUnits };
+}
+const deleteUnit = await Units.deleteOne({ _id, user})
+if (deleteUnit.deletedCount > 0 ){
+res.status(201).json({ message: "Cours supprimé avec succès", success: true, name });
+}
+else {
+  res.status(201).json({ message: "Requête invalide", success: false });
+}
+
+    }
+    catch(error){
+      res.status(404).json({ message: error.message });
+    }
+  };
+
+export { Createunit, getUnits, RemoveUnit };
