@@ -17,4 +17,8 @@ body {
 .ant-list-item {
 word-wrap:break-word;
 }
-
+.ant-card{
+display:flex;
+flex-direction:column;
+justify-content:space-between;
+}
