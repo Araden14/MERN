@@ -52,6 +52,10 @@ if ( statuscheck === 0){
   return res.json({ message: "Requête vide"});
 
 }
+if (req.cookies.user !== user){
+  return res.json({ message: "Utilisateur non autorisé"});
+}
+
 const deleteUnit = await Units.deleteOne({ _id, user})
 if (deleteUnit.deletedCount > 0 ){
 res.status(201).json({ message: "Cours supprimé avec succès", success: true, name });

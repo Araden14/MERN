@@ -6,12 +6,18 @@ import { AuthContext } from 'state/AuthContext';
 import { Card, Button, Popover } from 'antd';
 import Meta from 'antd/es/card/Meta';
 import CreateUnit from './create';
-// testotesas
+import { Checkbox } from '@mui/material';
+import { DeleteOutlined } from '@ant-design/icons';
+//testastos
+
 const Units = () => {
   Auth();
   const { authInfo } = React.useContext(AuthContext);
   const [units, setUnits] = useState(null);
   const [showButton, setShowButton] = useState(false); // Initialize data state for the button
+  const [UnitsData, setUnitsData] = useState(false); // Initialize data state for the button
+
+ 
 
   useEffect(() => {
     fetchUnits();
@@ -22,11 +28,21 @@ const Units = () => {
       .get('http://localhost:5001/units/get', { withCredentials: true })
       .then(function (response) {
         const data = response.data;
+        setUnitsData(data);
         let units = [];
         for (let i = 0; i < data.length; i++) {
           units.push(
-            <Card style={{ }} key={i} bordered={true}>
+
+            <Card
+              style={{ borderWidth: '0.2em', borderColor: 'blue' }}
+              key={i}
+              bordered={true}
+              actions={[
+                <DeleteOutlined onClick={() => deleteUnit(i)} />
+              ]}
+            >
               <Meta title={data[i].name} description={data[i].description} />
+<h1>{data[i].key}</h1>
               <br />
               <p>Volume horaire : {data[i].hours}</p>
               Jour : {data[i].day}
@@ -34,12 +50,38 @@ const Units = () => {
           );
         }
         setUnits(units);
+       
       })
       .catch(function (error) {
         console.log(error);
       });
   };
 
+  function deleteUnit(i) {
+    if (UnitsData[i]) {
+      axios.delete('http://localhost:5001/units/delete/', {
+        data: {
+          name: UnitsData[i].name,
+          _id: UnitsData[i]._id,
+          user: UnitsData[i].user
+        },
+        withCredentials: true
+      })
+      .then((response) => {
+        fetchUnits();
+        console.log(response.data.message)
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    } else {
+      console.log('Element not found in UnitsData array');
+    }
+    console.log(UnitsData[i]);
+    console.log(units)
+  }
+
+console.log(UnitsData)
   function resetState() {
     fetchUnits();
   }
