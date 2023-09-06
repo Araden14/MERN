@@ -15,20 +15,24 @@ const Units = () => {
   const { authInfo } = React.useContext(AuthContext);
   const [units, setUnits] = useState(null);
   const [showButton, setShowButton] = useState(false); // Initialize data state for the button
-  const [UnitsData, setUnitsData] = useState(false); // Initialize data state for the button
+  const [UnitsData, setUnitsData] = useState(null); // Initialize data state for the button
 
- 
+
 
   useEffect(() => {
     fetchUnits();
+
+
   }, []);
 
   const fetchUnits = async () => {
     axios
       .get('http://localhost:5001/units/get', { withCredentials: true })
       .then(function (response) {
-        const data = response.data;
-        setUnitsData(data);
+        console.log(response.data)
+        const data = response.data;      
+        setUnitsData(response.data);
+  
         let units = [];
         for (let i = 0; i < data.length; i++) {
           units.push(
@@ -42,23 +46,28 @@ const Units = () => {
               ]}
             >
               <Meta title={data[i].name} description={data[i].description} />
-<h1>{data[i].key}</h1>
+              <h1>{data[i].key}</h1>
               <br />
               <p>Volume horaire : {data[i].hours}</p>
               Jour : {data[i].day}
+              index : {i}
             </Card>
           );
         }
+        
         setUnits(units);
-       
+
       })
       .catch(function (error) {
         console.log(error);
       });
   };
 
+  console.log(UnitsData)
+
   function deleteUnit(i) {
-    if (UnitsData[i]) {
+    if (UnitsData[i]){
+    console.log(UnitsData[i]._id)
       axios.delete('http://localhost:5001/units/delete/', {
         data: {
           name: UnitsData[i].name,
@@ -67,21 +76,18 @@ const Units = () => {
         },
         withCredentials: true
       })
-      .then((response) => {
-        fetchUnits();
-        console.log(response.data.message)
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    } else {
-      console.log('Element not found in UnitsData array');
-    }
-    console.log(UnitsData[i]);
-    console.log(units)
-  }
+      
+        .then((response) => {
+          fetchUnits();
+          console.log(response.data.message)
+        })
+        .catch((error) => {
+            console.log('Error message:', error.message);
+            console.log('Error stack:', error.stack);
+        });} 
+      }
 
-console.log(UnitsData)
+
   function resetState() {
     fetchUnits();
   }

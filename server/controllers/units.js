@@ -62,6 +62,7 @@ res.status(201).json({ message: "Cours supprimé avec succès", success: true, n
 }
 else {
   res.status(201).json({ message: "Requête invalide", success: false });
+  console.log(req.body)
 }
 
     }
